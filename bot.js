@@ -4,8 +4,7 @@ bot.commands = new Discord.Collection();
 const fs = require('fs');
 bot.mutes = require('./mutes.json');
 let config = require('./botconfig.json');
-let code = require(`./code.json`);
-let token = code.token;
+
 let prefix = config.prefix;
 let profile = require('./profile.json');
 fs.readdir('./cmds/',(err,files)=>{
@@ -102,4 +101,4 @@ bot.on('message', async message => {
     bot.uId = message.author.id;
 });
 
-bot.login(token);
+bot.login(process.env.BOT_TOKEN);
