@@ -4,8 +4,8 @@ bot.commands = new Discord.Collection();
 const fs = require('fs');
 bot.mutes = require('./mutes.json');
 let config = require('./botconfig.json');
-const token = 'BOT_TOKEN'
-
+let token = `NzM4MDg3OTgzMTgxNDYzNTgx.XyG0AA.zA-CgRq5C687cuwZ5vMj9zArQmQ`;
+let prefix = config.prefix;
 let profile = require('./profile.json');
 fs.readdir('./cmds/',(err,files)=>{
     if(err) console.log(err);
