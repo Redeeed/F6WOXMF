@@ -4,7 +4,7 @@ bot.commands = new Discord.Collection();
 const fs = require('fs');
 bot.mutes = require('./mutes.json');
 let config = require('./botconfig.json');
-const token = 'token'
+const token = 'token1'
 
 let prefix = config.prefix;
 let profile = require('./profile.json');
