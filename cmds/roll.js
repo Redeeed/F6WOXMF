@@ -2,7 +2,8 @@ const Discord = module.require("discord.js");
 const fs = require("fs");
 module.exports.run = async (bot,message,args) => {
     if(!args[0]) return bot.send("Вы не указали число");
-    if(!args < 0) return bot.send("Кубик полетел в 4 измерение(выпало отрицательное число")
+    let args2 = (!args)
+    if(args2 < 0) return bot.send("Кубик полетел в 4 измерение(выпало отрицательное число")
 
     
     
