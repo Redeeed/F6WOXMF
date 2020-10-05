@@ -8,7 +8,7 @@ module.exports.run = async (bot,message,args) => {
     .addField("!clear","!clear 1-100")
     .addField("!kick","!kick Участник Причина")
     .addField("!mute","!mute Участник Время(в секундах) Причина")
-    .addField("!ping","!ping-команда для проверки работоспособности бота")
+    .addField("!roll-генератор случайных чисел","!roll максимальное число(при больших значениях результаты могут стать странными)")
     .addField("!serverinfo","Информация о сервере")
     .addField("!soup","Призывает священный ролик О ВЕЛИКИЙ СУП НАВАРИЛИ!")
     .addField("!unmute","!unmute Участник")
