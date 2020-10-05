@@ -4,8 +4,8 @@ bot.commands = new Discord.Collection();
 const fs = require('fs');
 bot.mutes = require('./mutes.json');
 let config = require('./botconfig.json');
+const token = 'BOT_TOKEN'
 
-let prefix = config.prefix;
 let profile = require('./profile.json');
 fs.readdir('./cmds/',(err,files)=>{
     if(err) console.log(err);
@@ -21,8 +21,8 @@ fs.readdir('./cmds/',(err,files)=>{
 
 
 bot.on('ready', () => {
-    let test = `1`
-        bot.user.setPresence({activity: {type: 1, name: test}, status: 'online'}); 
+    let test = `kek`
+        bot.user.setPresence({activity: {type: 1, name: test}, status: 'dnd'}); 
 
     console.log(`Запустился бот ${bot.user.username}`);
     bot.generateInvite(["ADMINISTRATOR"]).then(link =>{
@@ -53,7 +53,10 @@ bot.on('ready', () => {
     },5000)
 
 });
-
+bot.on('guildMemberAdd',(member)=>{
+    let role = member.guild.roles.find(r => r.name === "Новенькие");
+    member.addRole(role);
+});
 
 bot.on('message', async message => {
     if(message.author.bot) return;
@@ -101,4 +104,4 @@ bot.on('message', async message => {
     bot.uId = message.author.id;
 });
 
-bot.login(process.env.BOT_TOKEN);
+bot.login(token);
