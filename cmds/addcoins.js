@@ -7,10 +7,10 @@ module.exports.run = async (bot,message,args) => {
     if(!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send("У вас нет прав");
     let rUser = message.guild.member(message.mentions.users.first() || message.guild.members.find(m => m.user.username == args[0] || m.id == args[0])) // участник
     if(!args[0]) return bot.send("Вы не указали пользователя");
-    let number =  args.slice(1).join(' ')
+    let number = args.join(' ')
     
     if(!profile[rUser.id])return bot.send("Пользователя нету в profile.json");
-    profile[rUser.id].coins += (number);
+    profile[rUser.id].coins += 1;
     fs.writeFile('./profile.json',JSON.stringify(profile),(err)=>{
         if(err) console.log(err);
     });
