@@ -67,7 +67,7 @@ bot.on('message', async message => {
     };
     if(!profile[uid]){
         profile[uid] ={
-            coins:10,
+            coins:0,
             warns:0,
             xp:0,
             lvl:1,
@@ -75,7 +75,7 @@ bot.on('message', async message => {
     };
     let u = profile[uid];
 
-    u.coins++;
+        
     u.xp++;
 
     if(u.xp>= (u.lvl * 5)){
