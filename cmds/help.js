@@ -10,7 +10,7 @@ module.exports.run = async (bot,message,args) => {
     .addField("!mute","!mute Участник Время(в секундах) Причина")
     .addField("!roll-генератор случайных чисел","!roll максимальное число(при больших значениях результаты могут стать странными)")
     .addField("!serverinfo","Информация о сервере")
-    .addField("!soup","Призывает священный ролик О ВЕЛИКИЙ СУП НАВАРИЛИ!")
+    .addField("!profile-отображает профиль пользователя","!profile (будет введена возможность просмотра профиля других людей)")
     .addField("!unmute","!unmute Участник")
     .addField("!unwarn","!unwarn Участник ")
     .addField("!userinfo","Информация о участнике")

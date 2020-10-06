@@ -2,7 +2,7 @@ const Discord = module.require("discord.js");
 const fs = require("fs");
 module.exports.run = async (bot,message,args) => {
     if(!args[0]) return bot.send("Вы не указали число");
-    let args2 = (!args)
+    
     
 
     
