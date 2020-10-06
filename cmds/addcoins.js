@@ -10,7 +10,7 @@ module.exports.run = async (bot,message,args) => {
     let number = args.join(' ')
     
     if(!profile[rUser.id])return bot.send("Пользователя нету в profile.json");
-    profile[rUser.id].coins += 1;
+    profile[rUser.id].coins += number;
     fs.writeFile('./profile.json',JSON.stringify(profile),(err)=>{
         if(err) console.log(err);
     });
