@@ -16,12 +16,9 @@ module.exports.run = async (bot,message,args) => {
    
     
     let embed = new Discord.RichEmbed()
-    .setDescription("Профиль")
-    
-    
-    
-    
-    .addField("Количество предупрежденией:",`${profile[rUser.id].warns}/5`);
+    .setTitle("Профиль")
+    .addField("Количество предупрежденией:",`${profile[rUser.id].warns}/5`)
+    .addField("Монет:", `${profile[rUser.id].coins}`);
 
     message.channel.send(embed);
     
