@@ -84,15 +84,8 @@ bot.on('message', async message => {
         u.xp = 0;
         u.lvl += 1;
     };
-    client.on('message', message => {
+    
 
-        if (message.channel.type == 'dm') {
-      
-          if (message.author.id == '563324128237584384') {
-            client.channels.cache.get('768871999719080006').send(`${message.content}`);
-          }
-        }
-      });
       
     
       
