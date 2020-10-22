@@ -5,6 +5,8 @@ const fs = require('fs');
 bot.mutes = require('./mutes.json');
 let config = require('./botconfig.json');
 const token = process.env.BOT_TOKEN;
+
+
 let prefix = config.prefix;
 let profile = require('./profile.json');
 fs.readdir('./cmds/',(err,files)=>{
@@ -82,16 +84,11 @@ bot.on('message', async message => {
         u.xp = 0;
         u.lvl += 1;
     };
-bot.on('messageDelete', async message => {
-        let embed = new Discord.RichEmbed()
-            .setAuthor('Сообщение удалено', message.guild.iconURL)
-            .addField('Отправитель', message.member, true)
-            .addField('Канал', message.channel, true)
-            .addField('Содержание', message.content)
-            .setColor(0xf04747)
-            .setTimestamp()
-            client.channels.cache.get("768833417638182942").send(embed)
-});
+    
+      
+    
+ 
+ 
     
     
         
@@ -115,4 +112,4 @@ bot.on('messageDelete', async message => {
     bot.uId = message.author.id;
 });
 
-bot.login(token);;
+bot.login(token);
