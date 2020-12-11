@@ -1,46 +1,18 @@
-const Discord = module.require("discord.js");
-const fs = require("fs");
-module.exports.run = async (bot,message,args) => {
-    if(!message.member.hasPermission("MANAGE_MESSAGES")) return message.channel.send("У вас нет прав");
-    let rUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
-    if(!args[0]) return bot.send("Вы не указали пользователя");
-    if(!rUser) return bot.send("Пользователь не найден");
-    if(!args[1]) return bot.send("Укажите время в секундах");
-    let role = message.guild.roles.find(r => r.name === "Muted");
-    if(!role){
-        role = await message.guild.createRole({
-            name:"Muted",
-            permissions:[]
-        });
-        message.guild.channels.forEach(async (channel,id) => {
-            await channel.overwritePermissions(role,{
-                SEND_MESSAGES:false,
-                ADD_REACTIONS:false
-            });
-        });
+if(message.content.startsWith(prefix + "mute")){
+    if(!message.member.hasPermission("MANAGE_MEMBERS"))return(message.reply("you need **Manage members** permission to do that"))//смотрим, есть ли у автора разрешение на управление участниками
+    let tomute = message.mentions.members.first()//объявляем того кого будем затыкать
+    if(!tomute)return(message.reply("please mention a member to mute"))//проверка на строку выше
+    let muterole = message.guild.roles.find(`name`, "Muted")//поиск роли на вашем сервере, поэтому лучше сразу создайте и настройте в каналах
+    if(!muterole)return(message.reply("please create a role called **Muted**"))//проверка на существование роли, если ее нет - напишет что вам нужно ее создать
 
-    };
-    if(rUser.roles.has(role.id)) return bot.send("Этот пользователь уже не может говорить");
-    bot.mutes[rUser.id] = {
-        guild:message.guild.id,
-        time: parseInt(Date.now() + (args[1]*1000)),
-    };
-    fs.writeFile('./mutes.json',JSON.stringify(bot.mutes),(err)=>{
-        if(err) console.log(err);
-    });
+    let mutetime = args[2]
+    if(!mutetime)return(message.reply("please specify a time"))
 
-    rUser.addRole(role);
-    let reason = args.slice(2).join(' ') || 'Не указана' // причина
-    let embed = new Discord.RichEmbed()
-    .setDescription("Мут")
-    .setColor('#e22216')
-    .addField("Модератор:",message.author.tag)
-    .addField("Замутил:",`${rUser.user.tag}`)
-    .addField("Сможет говорить через:", `${args[1]} секунд`)
-    .addField('Причина:', `${reason}`,true)
-    .setTimestamp();
-    message.channel.send(embed);
-};
-module.exports.help = {
-    name: "mute"
-};
+    tomute.addRole(muterole.id).catch(console.log("Role was added lul"))//добавляем участнику которого тагнули нашу роль
+    message.channel.send(`Muted ${tomute.user.tag}|${tomute.user.id} for ${ms(ms(mutetime))}`)//отправляем в канал инфу о том, кого замутили и на сколько
+
+    setTimeout(function(){
+      tomute.removeRole(muterole.id)
+      message.channel.send(`${tomute.user.tag}|${tomute.user.id} has been unmuted after being in mute for ${ms(ms(mutetime))}`)
+    }, ms(mutetime))//ставим таймер на время мута, по истечению роль будет снята автоматом
+  }
