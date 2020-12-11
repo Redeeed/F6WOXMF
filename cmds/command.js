@@ -6,7 +6,7 @@ module.exports.run = async (bot,message,args) => {
     let botmessage = args.join(" ");
     
     
-    let channelid = bot.channels.get(`768871999719080006`);
+    let channelid = bot.channels.get(`718606251965153281`);
     message.delete().catch();
     channelid.send(botmessage);
 };
