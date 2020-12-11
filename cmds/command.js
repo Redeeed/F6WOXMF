@@ -4,10 +4,10 @@ module.exports.run = async (bot,message,args) => {
     if(message.author.tag !== 'Fairon#1658') return message.channel.send("У вас нет прав");
     
     
-    let channel = args.slice(1).join(' ');
-    let botmessage = args.slice(2).join(' ');
     
-    let channelid = bot.channels.get(`${channel}`);
+    
+    
+    let channelid = bot.channels.get(`768871999719080006`);
     message.delete().catch();
     channelid.send(botmessage);
 };
