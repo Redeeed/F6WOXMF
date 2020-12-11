@@ -55,10 +55,8 @@ bot.on('ready', () => {
     },5000)
 
 });
-bot.on('guildMemberAdd',(member)=>{
-    let role = member.guild.roles.find(r => r.name === "Новенькие");
-    member.addRole(role);
-});
+
+
 
 bot.on('message', async message => {
     if(message.author.bot) return;
