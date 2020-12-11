@@ -40,7 +40,7 @@ bot.on('ready', () => {
             let guildid = bot.mutes[i].guild;
             let guild = bot.guilds.get(guildid);
             let member = guild.members.get(i);
-            let muteRole = member.guild.roles.find(r => r.name === "Muted"); 
+            let muteRole = message.guild.roles.find(r => r.name === "Muted"); 
             if(!muteRole) continue;
 
             if(Date.now()>= time){
